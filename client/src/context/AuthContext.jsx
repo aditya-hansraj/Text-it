@@ -32,6 +32,7 @@ export const AuthContextProvider = ({ children }) => {
         event.preventDefault();
         setIsRegisterLoading(true);
         setRegisterError(null);
+        // registers new user to the database from the data in registerInfo
         const response = await postRequest(`${baseUrl}/users/register`, JSON.stringify(registerInfo));
         setIsRegisterLoading(false);
         setRegisterInfo({
@@ -55,6 +56,7 @@ export const AuthContextProvider = ({ children }) => {
         event.preventDefault();
         setIsLoginLoading(true);
         setLoginError(null);
+        // login the user from the loginInfo
         const response = await postRequest(`${baseUrl}/users/login`, JSON.stringify(loginInfo));
         setIsLoginLoading(false);
         setLoginInfo({
