@@ -1,0 +1,16 @@
+.vscode/*
+!.vscode/extensions.json
+dist
+dist-ssr
+*.local
+.DS_Store
+
+# client
+client/node_modules
+
+# server
+server/.env
+server/node_modules
+
+# socket
+socket/node_modules
