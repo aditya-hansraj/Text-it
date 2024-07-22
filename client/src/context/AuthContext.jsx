@@ -24,7 +24,6 @@ export const AuthContextProvider = ({ children }) => {
     }, []);
 
     const updateRegisterInfo = useCallback(info => {
-        console.log(info)
         setRegisterInfo(info);
     }, []);
 
@@ -48,7 +47,6 @@ export const AuthContextProvider = ({ children }) => {
     }, [registerInfo]);
 
     const updateLoginInfo = useCallback(info => {
-        console.log(info);
         setLoginInfo(info);
     }, []);
 

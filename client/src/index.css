@@ -89,7 +89,8 @@ body {
   }
   
   .message.self {
-    background: #00bd9b;
+    /* background: #00bd9b; */
+    background: #E4A11B;
   }
   
   .message-footer {
@@ -106,7 +107,10 @@ body {
   }
   .send-btn {
     border: none;
-    background: rgba(72, 112, 223, 1);
+    /* background: rgba(72, 112, 223, 1); */
+    /* background: #E4A11B; */
+    background: transparent;
+    color: #E4A11B;
     height: 40px;
     width: 40px;
     border-radius: 50%;
