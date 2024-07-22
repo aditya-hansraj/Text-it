@@ -8,9 +8,9 @@ import ChatBox from "../components/chat/ChatBox";
 
 const Chat = () => {
     const { user } = useContext(AuthContext);
-    const { userChats, isUserChatsLoading, userChatsError, updateCurrentChat } = useContext(ChatContext);
+    const { userChats, isUserChatsLoading, userChatsError, updateCurrentChat, closeNotifications } = useContext(ChatContext);
     return (
-        <Container>
+        <Container onClick={closeNotifications}>
             <OtherUsers />
             {!userChats?.length 
                 ? null  

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/chatContext";
 import { useFetchRecipientUser } from "../../hooks/useFetchRecipient";
@@ -17,6 +17,8 @@ const ChatBox = () => {
     isMessagesLoading,
     messagesError,
     sendMessage,
+    setIsNotificationOpen,
+    closeNotifications
   } = useContext(ChatContext);
   const { recipientUser } = useFetchRecipientUser(currentChat, user);
   const loaderStyle = {
@@ -24,14 +26,19 @@ const ChatBox = () => {
     display: "block",
     margin: "0 auto",
   };
-
   const [textMsg, setTextMsg] = useState("");
+  const scroll = useRef();
+
+  useEffect(() => {
+    scroll.current?.scrollIntoView({behavior: "smooth"});
+  }, [messages]);
 
   if (!recipientUser)
     return (
       <Container
         style={{ height: "80vh" }}
         className="d-flex justify-content-center align-items-center"
+        onClick={closeNotifications}
       >
         <h1>Text-it</h1>
       </Container>
@@ -52,7 +59,7 @@ const ChatBox = () => {
       </Container>
     );
   return (
-    <Stack gap={4} className="chat-box">
+    <Stack gap={4} className="chat-box" onClick={closeNotifications}>
       <div className="chat-header">
         <strong>{recipientUser.name}</strong>
       </div>
@@ -66,6 +73,7 @@ const ChatBox = () => {
                   ? "self align-self-end"
                   : "align-self-start"
               }`}
+              ref={scroll}
             >
               <span>{message.text}</span>
               <span className="message-footer">
@@ -74,30 +82,7 @@ const ChatBox = () => {
             </Stack>
           ))}
       </Stack>
-      <ChatInput sendMessage={sendMessage} textMsg={textMsg} setTextMsg={setTextMsg} user={user} currentChat={currentChat} />
-      {/* <Form onSubmit={(event) => {
-          event.preventDefault()
-          sendMessage(textMsg, user, currentChat._id, setTextMsg)
-        }
-      }>
-        <Stack
-          direction="horizontal"
-          gap={0}
-          className="chat-input flex-grow-0"
-        >
-          <InputEmoji
-            value={textMsg}
-            onChange={setTextMsg}
-            fontFamily="nunito"
-            borderColor="rgba(72, 112, 223, 0.2)"
-          />
-          <button type="submit" className="send-btn" >
-            <BiSolidSend
-              style={{ width: "23px", height: "23px", border: "yellow" }}
-            />
-          </button>
-        </Stack>
-      </Form> */}
+      <ChatInput onClick={closeNotifications} sendMessage={sendMessage} textMsg={textMsg} setTextMsg={setTextMsg} user={user} currentChat={currentChat} />
     </Stack>
   );
 };

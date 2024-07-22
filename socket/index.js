@@ -23,7 +23,12 @@ io.on("connection", socket => {
   socket.on("sendMessage", msg => {
     const user = onlineUsers.find(usr => usr.userId == msg.recipientId);
     if(user) {
-        io.to(user.socketId).emit("getMessage", msg)
+        io.to(user.socketId).emit("getMessage", msg);
+        io.to(user.socketId).emit("getNotification", {
+          senderId: msg.senderId,
+          isRead: false,
+          date: new Date()
+        });
     }
   });
 
