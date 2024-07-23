@@ -2,6 +2,7 @@ import { Alert, Button, Form, Row, Col, Stack } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { BiSolidHide, BiSolidShow  } from "react-icons/bi";
+import { Helmet } from 'react-helmet';
 
 const Register = () => {
     const { registerInfo, updateRegisterInfo, registerUser, registerError, isRegisterLoading } = useContext(AuthContext);
@@ -15,6 +16,9 @@ const Register = () => {
       
     return (
     <>
+    <Helmet>
+        <title>Register</title>
+    </Helmet>
     <Form onSubmit={ registerUser }>
     <Row style={{
         height: "100vh",

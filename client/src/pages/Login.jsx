@@ -2,6 +2,7 @@ import { Alert, Button, Form, Row, Col, Stack } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { BiSolidHide, BiSolidShow  } from "react-icons/bi";
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
     const { loginInfo, updateLoginInfo, loginUser, loginError, isLoginLoading  } = useContext(AuthContext);
@@ -14,6 +15,9 @@ const Login = () => {
     };
     return (
         <>
+        <Helmet>
+            <title>Login</title>
+        </Helmet>
         <Form onSubmit={loginUser}>
         <Row style={{
             height: "100vh",

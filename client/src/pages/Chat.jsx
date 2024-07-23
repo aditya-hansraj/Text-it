@@ -5,11 +5,16 @@ import { AuthContext } from "../context/AuthContext"
 import UserChat from "../components/chat/UserChat" 
 import OtherUsers from "../components/chat/OtherUsers";
 import ChatBox from "../components/chat/ChatBox";
+import { Helmet } from 'react-helmet';
 
 const Chat = () => {
     const { user } = useContext(AuthContext);
     const { userChats, isUserChatsLoading, userChatsError, updateCurrentChat, closeNotifications } = useContext(ChatContext);
     return (
+        <>
+        <Helmet>
+            <title>Text-it</title>
+        </Helmet>
         <Container onClick={closeNotifications}>
             <OtherUsers />
             {!userChats?.length 
@@ -29,6 +34,7 @@ const Chat = () => {
                 </Stack>
             }
         </Container>
+        </>
     );
 }
  
