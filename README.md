@@ -49,7 +49,7 @@ Before you begin, ensure you have the following installed:
    npm run dev
 10. **Navigate to the socket directory & start the socket server:**
     ```bash
-    cd ../sockete
+    cd ../socket
     npm start
 11. Open your browser and navigate to http://localhost:5173/
 12. Now register and use the real time chat applicaion.
